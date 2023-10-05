@@ -14,6 +14,7 @@ public class Input {
 			try {
 				System.out.println(textByte);
 				inputByte = sc.nextByte();
+				sc.nextLine();
 				isByte = true;
 			} catch (InputMismatchException e) {
 				System.out.println("Error de formato");
@@ -31,13 +32,13 @@ public class Input {
 			try {
 				System.out.println(textInt);
 				inputInt = sc.nextInt();
+				sc.nextLine();
 				isInt = true;
 			} catch (InputMismatchException e) {
 				System.out.println("Error de formato");
 				sc.nextLine();
 			}
 		}
-
 		return inputInt;
 	}
 
@@ -49,6 +50,7 @@ public class Input {
 			try {
 				System.out.println(textFloat);
 				inputFloat = sc.nextFloat();
+				sc.nextLine();
 				isFloat = true;
 			} catch (InputMismatchException e) {
 				System.out.println("Error de formato");
@@ -65,7 +67,8 @@ public class Input {
 		while (!isDouble) {
 			try {
 				System.out.println(textDouble);
-				inputDouble = sc.nextFloat();
+				inputDouble = sc.nextDouble();
+				sc.nextLine();
 				isDouble = true;
 			} catch (InputMismatchException e) {
 				System.out.println("Error de formato");
@@ -74,6 +77,81 @@ public class Input {
 		}
 		return inputDouble;
 
+	}
+
+	public static char readChar(String textChar) throws Exception {
+		boolean isChar = false;
+		char inputChar = '0';
+		String inputString;
+
+		while (!isChar) {
+			try {
+				System.out.println(textChar);
+				inputString = sc.nextLine();
+
+				if (inputString.length() > 1) {
+					throw new Exception();
+				} else {
+					inputChar = inputString.charAt(0);
+					isChar = true;
+				}
+			} catch (Exception e) {
+				System.out.println("Error de formato.");
+			}
+		}
+		return inputChar;
+	}
+
+	public static String readString(String textString) throws Exception {
+		boolean isString = false;
+		String inputString = "";
+
+		while (!isString) {
+			try {
+				System.out.println(textString);
+				inputString = sc.nextLine();
+
+				if (inputString.isBlank()) {
+					throw new Exception();
+				} else {
+					isString = true;
+				}
+			} catch (Exception e) {
+				System.out.println("Error de formato.");
+			}
+		}
+
+		return inputString;
+	}
+
+	public static boolean readYesNo(String textYesNo) throws Exception {
+		boolean isYesNo = false;
+		boolean yesNo = false;
+		String inputYesNo;
+		char charYesNo;
+
+		while (!isYesNo) {
+			try {
+				System.out.println(textYesNo);
+				inputYesNo = sc.nextLine();
+				inputYesNo = inputYesNo.toLowerCase();
+				charYesNo = inputYesNo.charAt(0);
+
+				if (charYesNo == 's') {
+					yesNo = true;
+					isYesNo = true;
+				} else if (charYesNo == 'n') {
+					yesNo = false;
+					isYesNo = true;
+				} else {
+					throw new Exception();
+				}
+			} catch (Exception e) {
+				System.out.println("Error de formato.");
+			}
+		}
+
+		return yesNo;
 	}
 
 }

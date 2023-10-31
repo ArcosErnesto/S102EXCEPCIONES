@@ -112,12 +112,14 @@ public class Input {
 				inputString = sc.nextLine();
 
 				if (inputString.isBlank()) {
-					throw new Exception();
+					throw new Exception("La cadena no puede estar en blanco.");
+				} else if (inputString.matches(".*\\d.*")) {
+					throw new Exception("La cadena no puede contener números.");
 				} else {
 					isString = true;
 				}
 			} catch (Exception e) {
-				System.out.println("Error de formato.");
+				System.out.println("Error: " + e.getMessage());
 			}
 		}
 
